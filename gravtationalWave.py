@@ -10,8 +10,8 @@ x0 = 1.0
 Polarization = "+"
 k  = 2.0
 M = 1.0  # mass of the test particles in the xy plane
-Cords = [1 ,  -1 , 0,
-        1/np.sqrt(2), -1/np.sqrt(2)]
+Radius = 0.1; z0 = 2; # Radius and the Z co-ordinates
+Cords = [1 ,  -1 , 0, 1/np.sqrt(2), -1/np.sqrt(2)]
 
 #______________________________________________________
 # h_{+} Polarization
@@ -19,14 +19,14 @@ def Model_Plus():
     #____________________________________________________
     # test mass [particles] that
     #will be affected by gravitational wave
-    testMass1 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[0],Cords[2],Cords[2]))
-    testMass2 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[1],Cords[2],Cords[2]))
-    testMass3 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[2],Cords[0],Cords[2]))
-    testMass4 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[2],Cords[1],Cords[2]))
-    testMass5 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[3],Cords[3],Cords[2]))
-    testMass6 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[3],Cords[4],Cords[2]))
-    testMass7 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[4],Cords[4],Cords[2]))
-    testMass8 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[4],Cords[3],Cords[2]))
+    testMass1 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[0],Cords[2],Cords[z0]))
+    testMass2 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[1],Cords[2],Cords[z0]))
+    testMass3 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[0],Cords[z0]))
+    testMass4 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[1],Cords[z0]))
+    testMass5 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[3],Cords[z0]))
+    testMass6 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[4],Cords[z0]))
+    testMass7 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[4],Cords[z0]))
+    testMass8 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[3],Cords[z0]))
     #____________________________________________________
     # motion of the test mass as the wave pass by
     xyLine = [testMass1,testMass2,testMass3,testMass4] 
@@ -59,14 +59,14 @@ def Model_Cross():
     #____________________________________________________
     # test mass [particles] that
     #will be affected by gravitational wave
-    testMass1 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[0],Cords[2],Cords[2]))
-    testMass2 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[1],Cords[2],Cords[2]))
-    testMass3 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[2],Cords[0],Cords[2]))
-    testMass4 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[2],Cords[1],Cords[2]))
-    testMass5 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[3],Cords[3],Cords[2]))
-    testMass6 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[3],Cords[4],Cords[2]))
-    testMass7 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[4],Cords[4],Cords[2]))
-    testMass8 = sphere(radius = 0.1, color = color.orange, pos = vector(Cords[4],Cords[3],Cords[2]))
+    testMass1 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[0],Cords[2],Cords[z0]))
+    testMass2 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[1],Cords[2],Cords[z0]))
+    testMass3 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[0],Cords[z0]))
+    testMass4 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[1],Cords[z0]))
+    testMass5 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[3],Cords[z0]))
+    testMass6 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[4],Cords[z0]))
+    testMass7 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[4],Cords[z0]))
+    testMass8 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[3],Cords[z0]))
     #____________________________________________________
     # motion of the test mass as the wave pass by
     xyLine = [testMass1,testMass2,testMass3,testMass4] 
