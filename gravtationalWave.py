@@ -1,7 +1,7 @@
 from vpython import*
 import numpy as np
 from math import sin, cos
-#from matlabplo
+
 
 #____________________________________________________
 # constants
@@ -12,25 +12,21 @@ k  = 2.0
 M = 1.0  # mass of the test particles in the xy plane
 Radius = 0.1; z0 = 2; # Radius and the Z co-ordinates
 Cords = [1 ,  -1 , 0, 1/np.sqrt(2), -1/np.sqrt(2)]
+points = [(0, 2), (1, 2), (2, 0), (2, 1), (3, 3), (3, 4), (4, 4), (4, 3)]
 
+def create_spheres():
+    return [sphere(radius=Radius, color=color.orange, pos=vector(Cords[point[0]], Cords[point[1]], Cords[z0])) for point in points]
 #______________________________________________________
 # h_{+} Polarization
 def Model_Plus():
     #____________________________________________________
     # test mass [particles] that
     #will be affected by gravitational wave
-    testMass1 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[0],Cords[2],Cords[z0]))
-    testMass2 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[1],Cords[2],Cords[z0]))
-    testMass3 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[0],Cords[z0]))
-    testMass4 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[1],Cords[z0]))
-    testMass5 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[3],Cords[z0]))
-    testMass6 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[4],Cords[z0]))
-    testMass7 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[4],Cords[z0]))
-    testMass8 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[3],Cords[z0]))
     #____________________________________________________
     # motion of the test mass as the wave pass by
-    xyLine = [testMass1,testMass2,testMass3,testMass4] 
-    xyQuad = [testMass5,testMass6,testMass7,testMass8]
+    test_masses = create_spheres()
+    xyLine = test_masses[:4] 
+    xyQuad = test_masses[4:]
     dt = 0.01
     t = 0
     while (t < 100):
@@ -39,7 +35,9 @@ def Model_Plus():
         dy = 1+(1/2)*y0*sin(k*t)
         dx1 = 1/np.sqrt(2)-(1/2)*x0*sin(k*t)
         dy1 = 1/np.sqrt(2)+(1/2)*y0*sin(k*t)
-        xyLine[0].pos.x = dx                                                           
+        xyLine[0].pos.x = dx
+        xyLine[2].pos.y = dy
+        xyLine[3].pos.y =-dy                                                           
         xyQuad[0].pos.x = dx1
         xyQuad[0].pos.y =dy1
         xyQuad[1].pos.x = -dx1
@@ -49,8 +47,7 @@ def Model_Plus():
         xyQuad[2].pos.y =-dy1
         xyQuad[3].pos.x = dx1
         xyQuad[3].pos.y = -dy1
-        xyLine[2].pos.y = dy
-        xyLine[3].pos.y =-dy
+
         t+=dt
 
 #_________________________________________________________
@@ -59,18 +56,11 @@ def Model_Cross():
     #____________________________________________________
     # test mass [particles] that
     #will be affected by gravitational wave
-    testMass1 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[0],Cords[2],Cords[z0]))
-    testMass2 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[1],Cords[2],Cords[z0]))
-    testMass3 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[0],Cords[z0]))
-    testMass4 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[2],Cords[1],Cords[z0]))
-    testMass5 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[3],Cords[z0]))
-    testMass6 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[3],Cords[4],Cords[z0]))
-    testMass7 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[4],Cords[z0]))
-    testMass8 = sphere(radius = Radius, color = color.orange, pos = vector(Cords[4],Cords[3],Cords[z0]))
+    test_masses = create_spheres()
     #____________________________________________________
     # motion of the test mass as the wave pass by
-    xyLine = [testMass1,testMass2,testMass3,testMass4] 
-    xyQuad = [testMass5,testMass6,testMass7,testMass8]
+    xyLine = test_masses[:4] 
+    xyQuad = test_masses[4:]
     dt = 0.01
     t = 0
     while (t < 100):
